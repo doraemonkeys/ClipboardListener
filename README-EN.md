@@ -22,7 +22,7 @@ This project was extracted from [ClipShare](https://github.com/aa2013/ClipShare)
 | Windows  | ✔️ Fully supported                                                    |
 | Linux    | ✔️ Supported on X11 and Wayland(ext-data-control)                     |
 | macOS    | ✔️ Fully supported                                                    |
-| iOS      | ✖️ Not supported yet                                                  |
+| iOS      | ✔️ iOS14+ Basic support; needs PiP to monitor in background.          |
 
 ## Clipboard Content Types
 
@@ -161,15 +161,28 @@ Then, you need to add `file_paths.xml` under `res/xml`:
 </paths>
 ```
 
+## iOS
+
+iOS requires adding Picture-in-Picture support in `Info.plist`.
+
+```
+<key>UIBackgroundModes</key>
+<array>
+	<string>audio</string>
+</array>
+```
+
 ## API
 
 | Method                        | Description                                                                                                                      | Android | Windows | Linux | macOS | iOS |
 |-------------------------------|----------------------------------------------------------------------------------------------------------------------------------|---------|---------|-------|-------|-----|
-| onClipboardChanged            | Clipboard content change event (includes content type, content, and source). Currently, source information is based X11 on Linux | ✔️      | ✔️      | ✔️    | ✔️    | ✖️  |
-| startListening                | Start listening                                                                                                                  | ✔️      | ✔️      | ✔️    | ✔️    | ✖️  |
-| stopListening                 | Stop listening                                                                                                                   | ✔️      | ✔️      | ✔️    | ✔️    | ✖️  |
-| checkIsRunning                | Check if listening is active                                                                                                     | ✔️      | ✔️      | ✔️    | ✔️    | ✖️  |
-| copy                          | Copy content (does not trigger `onClipboardChanged`)                                                                             | ✔️      | ✔️      | ✔️    | ✔️    | ✖️  |
+| onClipboardChanged            | Clipboard content change event (includes content type, content, and source). Currently, source information is based X11 on Linux | ✔️      | ✔️      | ✔️    | ✔️    | ✔️  |
+| startListening                | Start listening                                                                                                                  | ✔️      | ✔️      | ✔️    | ✔️    | ✔️  |
+| stopListening                 | Stop listening                                                                                                                   | ✔️      | ✔️      | ✔️    | ✔️    | ✔️  |
+| checkIsRunning                | Check if listening is active                                                                                                     | ✔️      | ✔️      | ✔️    | ✔️    | ✔️  |
+| copy                          | Copy content (does not trigger `onClipboardChanged`)                                                                             | ✔️      | ✔️      | ✔️    | ✔️    | ✔️  |
+| startPIP                      | start picture-in-picture                                                                                                         | ✖️      | ✖️      | ✖️    | ✖️    | ✔️  |
+| stopPIP                       | stop picture-in-picture                                                                                                          | ✖️      | ✖️      | ✖️    | ✖️    | ✔️  |
 | getSelectedFiles              | Get selected files in the file explorer                                                                                          | ✖️      | ✔️      | ✖️    | ✖️    | ✖️  |
 | isEnableExcludeFormat         | return whether to receive excluded formats                                                                                       | ✖️      | ✔️      | ✖️    | ✖️    | ✖️  |
 | setExcludeFormatEnabled       | Set whether to receive excluded formats                                                                                          | ✖️      | ✔️      | ✖️    | ✖️    | ✖️  |
