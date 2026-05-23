@@ -20,7 +20,7 @@ This project was extracted from [ClipShare](https://github.com/aa2013/ClipShare)
 |----------|:----------------------------------------------------------------------|
 | Android  | ✔️ Fully supported (Android 10+ requires Shizuku or Root permissions) |
 | Windows  | ✔️ Fully supported                                                    |
-| Linux    | ✔️ Fully supported on X11                                             |
+| Linux    | ✔️ Supported on X11 and Wayland(ext-data-control)                     |
 | macOS    | ✔️ Fully supported                                                    |
 | iOS      | ✖️ Not supported yet                                                  |
 
@@ -38,7 +38,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  clipshare_clipboard_listener: ^1.2.17
+  clipshare_clipboard_listener: ^1.2.18
 ```
 
 ### Usage
@@ -145,20 +145,17 @@ class _MyAppState extends State<MyApp> with ClipboardListener, WidgetsBindingObs
 You need to add a `provider` in `AndroidManifest.xml`:
 
 ```xml
-<provider
-    android:name="androidx.core.content.FileProvider"
-    android:authorities="${applicationId}.FileProvider"
-    android:exported="false"
-    android:grantUriPermissions="true">
-    <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/file_paths"/>
+
+<provider android:name="androidx.core.content.FileProvider" android:authorities="${applicationId}.FileProvider"
+    android:exported="false" android:grantUriPermissions="true">
+    <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
 </provider>
 ```
 
 Then, you need to add `file_paths.xml` under `res/xml`:
 
 ```xml
+
 <paths>
     <external-cache-path name="external_cache" path="." />
 </paths>

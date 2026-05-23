@@ -17,7 +17,7 @@ Shizuku 或 Root）
 |---------|:------------------------------------------|
 | Android | ✔️ 完全支持，Android 10+ 需要依赖 Shizuku / Root权限 |
 | Windows | ✔️ 完全支持                                   |
-| Linux   | ✔️ 在X11上完全支持，Wayland 中前台时可用               |
+| Linux   | ✔️ 在 X11 和 Wayland(ext-data-control) 中支持  |
 | macOS   | ✔️ 完全支持                                   |
 | IOS     | ✖️ 暂不支持                                   |
 
@@ -35,7 +35,7 @@ Shizuku 或 Root）
 
 ```yaml
 dependencies:
-  clipshare_clipboard_listener: ^1.2.17
+  clipshare_clipboard_listener: ^1.2.18
 ```
 
 ### 用法
@@ -139,20 +139,21 @@ class _MyAppState extends State<MyApp> with ClipboardListener, WidgetsBindingObs
 > 请看这个插件的示例应用，以了解完整的例子。
 
 ## Android
+
 需要在 `AndroidManifest.xml` 中新增 `provider`
+
 ```xml
-<provider
-    android:name="androidx.core.content.FileProvider"
-    android:authorities="${applicationId}.FileProvider"
-    android:exported="false"
-    android:grantUriPermissions="true">
-    <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/file_paths"/>
+
+<provider android:name="androidx.core.content.FileProvider" android:authorities="${applicationId}.FileProvider"
+    android:exported="false" android:grantUriPermissions="true">
+    <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
 </provider>
 ```
+
 然后需要在 `res/xml` 中新增 `file_paths.xml`
+
 ```xml
+
 <paths>
     <external-cache-path name="external_cache" path="." />
 </paths>

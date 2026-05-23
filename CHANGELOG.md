@@ -1,3 +1,8 @@
+## 1.2.18
+* Linux 新增：支持Wayland(ext-data-control)中监听
+---
+* Linux feat: Supported Wayland(ext-data-control)
+
 ## 1.2.17
 * Android 修复：v1.2.16 导致的日志模式进程泄露问题
 ---
