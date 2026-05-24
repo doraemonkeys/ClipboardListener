@@ -29,6 +29,15 @@ struct _ClipshareClipboardListenerPlugin
 
 G_DEFINE_TYPE(ClipshareClipboardListenerPlugin, clipshare_clipboard_listener_plugin, g_object_get_type())
 
+static void onX11ClipboardChanged(
+        GtkClipboard *clipboard,
+        GdkEvent *event,
+        gpointer data);
+
+static void onWaylandClipboardChanged(
+        GObject *owner,
+        const gchar *type,
+        const gchar *content);
 // Called when a method call is received from Flutter.
 static void clipshare_clipboard_listener_plugin_handle_method_call(
     ClipshareClipboardListenerPlugin *self,

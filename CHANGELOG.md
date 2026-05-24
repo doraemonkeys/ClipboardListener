@@ -1,3 +1,8 @@
+## 1.2.19
+* Linux 修复：函数前置声明
+---
+* Linux fix: add forward declarations for clipboard callbacks
+
 ## 1.2.18
 * Linux 新增：支持Wayland(ext-data-control)中监听
 ---
