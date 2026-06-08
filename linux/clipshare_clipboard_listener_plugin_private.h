@@ -25,4 +25,3 @@ static FlMethodResponse *storeCurrentWindowHwnd(ClipshareClipboardListenerPlugin
 static FlMethodResponse *pasteToPreviousWindow(ClipshareClipboardListenerPlugin *self, int64_t delayMs);
 static void sendClipboardData(ClipshareClipboardListenerPlugin *plugin, const gchar *type, const gchar *content);
 static void onWaylandClipboardChanged(GObject *owner, const gchar *type, const gchar *content);
-static void onClipboardChanged(GtkClipboard *clipboard, GdkEvent *event, gpointer data);
